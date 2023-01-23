@@ -12,6 +12,7 @@
     <script src="assets/lib/jquery/jquery.min.js"></script>
     <script src="assets/lib/fontawesome/fontawesome.min.js"></script>
     <script src="assets/code/js/darkmode.js" defer></script>
+    <script src="assets/code/js/easteregg.js" defer></script>
 </head>
 
 <body>
@@ -36,7 +37,7 @@
                     <form action="<?= $_CONFIG['base_url']; ?>/api/authentication/register" method="post" class="mt-5 text-start">
                         <div class="mb-3">
                             <label for="username" class="form-label">Benutzername</label>
-                            <input type="text" class="form-control" id="username" name="username" placeholder="Benutzername">
+                            <input type="text" class="form-control" id="username_easteregg" name="username" placeholder="Benutzername">
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Passwort</label>
@@ -69,6 +70,26 @@
                 </button>
             </div>
 
+        </div>
+    </div>
+
+    <!-- Modal -> Easteregg -->
+    <div class="modal fade font-minecraft" id="eastereggModal" tabindex="-1" aria-labelledby="eastereggModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="eastereggModalLabel">Wow. Schneller gefunden als das Stronghold.</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <img src="assets/img/creeper.gif" class="rounded img-fluid mb-3">
+
+                    Zzzzzzzzzzz....
+                    <br><br>
+                    BOOOOOOOM!!!!!!
+                </div>
+            </div>
         </div>
     </div>
 

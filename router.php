@@ -7,7 +7,7 @@ require 'assets/functions/encrytion.function.php';
 $router = new \Bramus\Router\Router();
 
 // Define routes
-$router->get('/', function() {
+$router->get('/', function () {
     // ! app installation here
 });
 
@@ -24,7 +24,7 @@ $router->get('/login', function () {
         exit;
     }
 
-    if (!empty($sessionid)){
+    if (!empty($sessionid)) {
         // send a curl get request to the marks page with the PHPSESSID cookie value and show the page content
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $_CONFIG['marks_url']);
@@ -73,7 +73,7 @@ $router->get('/marks', function () {
     global $_COOKIE;
     $sessionid = $_COOKIE['sessionid'];
 
-    if (!empty($sessionid)){
+    if (!empty($sessionid)) {
         // send a curl get request to the marks page with the PHPSESSID cookie value and show the page content
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $_CONFIG['marks_url']);
@@ -94,10 +94,16 @@ $router->get('/marks', function () {
 
         echo $output;
         exit;
-    }else{
+    } else {
         header("Location: " . $_CONFIG['base_url'] . "/login");
         exit;
     }
+});
+
+$router->get('/design/marks', function () {
+    global $_CONFIG;
+    include 'views/marks.view.php';
+    exit;
 });
 
 
@@ -135,7 +141,7 @@ $router->post('/api/authentication/register', function () {
     // get the PHPSESSID cookie value
     preg_match_all('/^Set-Cookie:\s*([^;]*)/mi', $output, $matches);
     $cookies = array();
-    foreach($matches[1] as $item) {
+    foreach ($matches[1] as $item) {
         parse_str($item, $cookie);
         $cookies = array_merge($cookies, $cookie);
     }
@@ -143,7 +149,7 @@ $router->post('/api/authentication/register', function () {
     // check if the PHPSESSID cookie value is set
     if (empty($cookies['PHPSESSID'])) {
         http_response_code(400);
-        $errormsg = urlencode("Leider konnten wir dich nicht mit deinen Zugangsdaten authentifizieren. Bitte überprüfe deine Eingaben und versuche es erneut.");
+        $errormsg = urlencode("Leider konnten wir dich nicht mit deinen Zugangsdaten authentifizieren. Bitte überprüfe deine Eingaben und versuche es erneut. #001");
         header("Location: " . $_CONFIG['base_url'] . "/register?error=" . $errormsg);
         exit();
     }
@@ -161,7 +167,7 @@ $router->post('/api/authentication/register', function () {
     // check if the output contains "Sie sind nicht angemeldet!"
     if (strpos($output, "Sie sind nicht angemeldet!") !== false) {
         http_response_code(400);
-        $errormsg = urlencode("Leider konnten wir dich nicht mit deinen Zugangsdaten authentifizieren. Bitte überprüfe deine Eingaben und versuche es erneut.");
+        $errormsg = urlencode("Leider konnten wir dich nicht mit deinen Zugangsdaten authentifizieren. Bitte überprüfe deine Eingaben und versuche es erneut. #002");
         header("Location: " . $_CONFIG['base_url'] . "/register?error=" . $errormsg);
         exit();
     }
@@ -221,7 +227,7 @@ $router->post('/api/authentication/login', function () {
     // get the PHPSESSID cookie value
     preg_match_all('/^Set-Cookie:\s*([^;]*)/mi', $output, $matches);
     $cookies = array();
-    foreach($matches[1] as $item) {
+    foreach ($matches[1] as $item) {
         parse_str($item, $cookie);
         $cookies = array_merge($cookies, $cookie);
     }

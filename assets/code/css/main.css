@@ -4,6 +4,16 @@
     src: url('../../fonts/Dosis-VariableFont_wght.ttf') format('truetype');
 }
 
+/* import font from ttf file */
+@font-face {
+    font-family: 'Minecraft';
+    src: url('../../fonts/Minecraft.ttf') format('truetype');
+}
+
 body {
     font-family: 'Dosis', sans-serif;
+}
+
+.font-minecraft {
+    font-family: 'Minecraft', sans-serif;
 }
