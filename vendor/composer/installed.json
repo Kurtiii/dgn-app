@@ -25,7 +25,7 @@
             },
             "time": "2021-11-18T19:24:07+00:00",
             "type": "library",
-            "installation-source": "source",
+            "installation-source": "dist",
             "autoload": {
                 "psr-0": {
                     "Bramus": "src/"

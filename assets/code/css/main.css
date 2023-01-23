@@ -1,0 +1,9 @@
+/* import font from ttf file */
+@font-face {
+    font-family: 'Dosis';
+    src: url('../../fonts/Dosis-VariableFont_wght.ttf') format('truetype');
+}
+
+body {
+    font-family: 'Dosis', sans-serif;
+}
