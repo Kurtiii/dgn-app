@@ -1,5 +1,4 @@
 # Noten-App für DGN
-
 ![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
@@ -22,7 +21,6 @@ Eigentlich kann man alles in einem Satz erklären: Der Server der App ist ein Pr
 ---
 
 ## Installation
-
 Es gibt drei Möglichkeiten die App zu installieren. Ich gehe hier auf jede dieser Möglichkeiten ein und zeige dir, auf welchen Geräten was am besten läuft und wo nicht.
 
 > **Warum gibt es die App nicht im App Store oder Play Store?** Da diese App nur eine sehr kleine Zielgruppe anspricht, sind die Kosten für die Veröffentlichung in den Stores zu teuer. Außerdem besteht eine hohe Chance, dass die App abgelehnt wird, da diese zu irrelevant für die Allgemeinheit ist.
@@ -46,3 +44,19 @@ Du kannst [dgn-app.kurtiii.de/install](https://dgn-app.kurtiii.de/install) öffn
 ![macOS](https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=macos&logoColor=F0F0F0)
 
 Natürlich kannst du die App auch auf deinem Laptop im Browser nutzen. Das geht selbstverständlich auch auf deinem Handy, wenn du nichts installieren kannst/darfst. I mean es ist eine PWA, warum sollte es nicht gehen? Besuche dafür einfach [dgn-app.kurtiii.de/web](https://dgn-app.kurtiii.de/web) und melde dich an.
+
+## Selbst hosten oder lokal testen
+Natürlich kannst du dieses Repo klonen und dann lokal testen oder auf deinem eigenen Server installieren. Vorraussetzungen sind:
+* PHP 8.1
+* Apache
+* SSL-Zertifikat (nur für Installation der PWA benötigt)
+
+Wenn du auf die Live-Daten vom Domgymnasium zugreifen möchtest, musst du in der `assets/config.php` die Zeile `$_CONFIG['production] = false;` zu `$_CONFIG['production] = true;` ändern. Sollte der Production-Mode auf `false` stehen, wird eine lokale Simulation der Schulseite verwendet welche sind in `demo/` befindet. Die Anmeldedaten im Demo-Modus sind:
+* Benutzername: `admin`
+* Passwort: `admin`
+
+Sollte die App lokal getestet werden, müssen die entsprechenden `localhost`-URLs in der Config ebenfalls angepasst werden.
+
+---
+
+Vielen Dank fürs lesen. Sollte es Probleme geben, kannst du gerne ein Issue aufmachen oder mir über Instagram ([@kurtiii06](https://instagram.com/kurtiii06)) eine Nachricht schreiben. In diesem Sinne, guten Morgen 💩✨
