@@ -103,7 +103,7 @@
                             <?= $course_name; ?>
                         </h5>
                         <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> <?= getCourseData($output, 'Mathematik', 'end-year-arithmetical-mean'); ?>
+                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> <?= getCourseData($output, $course_name, 'end-year-arithmetical-mean'); ?>
                         </div>
                     </div>
                 </div>
