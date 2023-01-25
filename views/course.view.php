@@ -122,16 +122,16 @@
                 <div class="col-8">
                     <div class="card-body my-3">
                         <h5 class="card-title mb-0 pb-0">
-                            Klassenarbeiten
+                            sonstige Noten
                         </h5>
                         <div class="form-text">
-                            ∅ <span class="fw-bold"><?= getCourseData($output, $course_name, 'class-test-arithmetical-mean'); ?></span> berechnet mit <?= getCourseData($output, $course_name, 'class-test-percent'); ?> %
+                            ∅ <span class="fw-bold"><?= getCourseData($output, $course_name, 'other-arithmetical-mean'); ?></span> berechnet mit <?= getCourseData($output, $course_name, 'other-percent'); ?> %
                         </div>
                         <div class="fs-5 mt-2">
                             <?php
-                            $classtest_marks = getCourseData($output, $course_name, 'class-test');
-                            $classtest_marks = explode(' ', $classtest_marks);
-                            foreach ($classtest_marks as $mark) :
+                            $other_marks = getCourseData($output, $course_name, 'other');
+                            $other_marks = explode(' ', $other_marks);
+                            foreach ($other_marks as $mark) :
                             ?>
                                 <span class="badge bg-primary bg-opacity-10 text-primary me-1"><?= $mark; ?></span>
                             <?php endforeach; ?>
@@ -151,16 +151,16 @@
                 <div class="col-8">
                     <div class="card-body my-3">
                         <h5 class="card-title mb-0 pb-0">
-                            sonstige Noten
+                            Klassenarbeiten
                         </h5>
                         <div class="form-text">
-                            ∅ <span class="fw-bold"><?= getCourseData($output, $course_name, 'other-arithmetical-mean'); ?></span> berechnet mit <?= getCourseData($output, $course_name, 'other-percent'); ?> %
+                            ∅ <span class="fw-bold"><?= getCourseData($output, $course_name, 'class-test-arithmetical-mean'); ?></span> berechnet mit <?= getCourseData($output, $course_name, 'class-test-percent'); ?> %
                         </div>
                         <div class="fs-5 mt-2">
                             <?php
-                            $other_marks = getCourseData($output, $course_name, 'other');
-                            $other_marks = explode(' ', $other_marks);
-                            foreach ($other_marks as $mark) :
+                            $classtest_marks = getCourseData($output, $course_name, 'class-test');
+                            $classtest_marks = explode(' ', $classtest_marks);
+                            foreach ($classtest_marks as $mark) :
                             ?>
                                 <span class="badge bg-primary bg-opacity-10 text-primary me-1"><?= $mark; ?></span>
                             <?php endforeach; ?>
