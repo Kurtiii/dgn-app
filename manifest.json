@@ -11,5 +11,7 @@
     "start_url": "/web",
     "display": "standalone",
     "scope": "/",
+    "theme_color": "#22252b",
+    "background_color": "#22252b",
     "description": "Inoffizielle App für die Noten auf dem Domgymnasium Naumburg"
 }
