@@ -109,523 +109,535 @@
 
         <hr class="my-5">
 
-        <!-- Biologie -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-dna fa-3x text-success"></i>
+        <div id="coursesCards">
+
+            <?php
+            $courses = getAllCourses($output);
+            foreach ($courses as $course => $courseAverage):
+            ?>
+
+            <!-- Biologie -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-dna fa-3x text-success"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">Biologie</h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">
+                                <?= $course; ?>
+                            </h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> <?= $courseAverage; ?>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Chemie -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-flask-vial fa-3x text-success"></i>
+            <?php endforeach; ?>
+
+            <!-- Chemie -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-flask-vial fa-3x text-success"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">Chemie</h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">Chemie</h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Deutsch -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-book fa-3x text-success"></i>
+            <!-- Deutsch -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-book fa-3x text-success"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">Deutsch</h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">Deutsch</h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Englisch -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-mug-tea fa-3x text-success"></i>
+            <!-- Englisch -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-mug-tea fa-3x text-success"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">Englisch</h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">Englisch</h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Ethik -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-people-arrows fa-3x text-success"></i>
+            <!-- Ethik -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-people-arrows fa-3x text-success"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">Ethik</h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">Ethik</h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Geographie -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-globe fa-3x text-success"></i>
+            <!-- Geographie -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-globe fa-3x text-success"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">Geographie</h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">Geographie</h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Geschichte -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-scroll-old fa-3x text-success"></i>
+            <!-- Geschichte -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-scroll-old fa-3x text-success"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">Geschichte</h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">Geschichte</h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Kunst -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-palette fa-3x text-success"></i>
+            <!-- Kunst -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-palette fa-3x text-success"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">Kunst</h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">Kunst</h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Mathematik -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-calculator-simple fa-3x text-success"></i>
+            <!-- Mathematik -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-calculator-simple fa-3x text-success"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">Mathematik</h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">Mathematik</h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Physik -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-bolt fa-3x text-success"></i>
+            <!-- Physik -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-bolt fa-3x text-success"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">Physik</h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">Physik</h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Spanisch -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-taco fa-3x text-success"></i>
+            <!-- Spanisch -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-taco fa-3x text-success"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">Spanisch</h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">Spanisch</h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Sport -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-face-head-bandage fa-3x text-success"></i>
+            <!-- Sport -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-face-head-bandage fa-3x text-success"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">Sport</h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">Sport</h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Wirtschaft -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-money-bill-trend-up fa-3x text-success"></i>
+            <!-- Wirtschaft -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-money-bill-trend-up fa-3x text-success"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">Wirtschaft</h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">Wirtschaft</h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Französisch -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-baguette fa-3x text-success"></i>
+            <!-- Französisch -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-baguette fa-3x text-success"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">Französisch</h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">Französisch</h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Latein -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-message-slash fa-3x text-success"></i>
+            <!-- Latein -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-message-slash fa-3x text-success"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">Latein</h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">Latein</h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Russisch -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <span class="fs-1 fw-bold text-success">UKR</span>
+            <!-- Russisch -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <span class="fs-1 fw-bold text-success">UKR</span>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">Russisch</h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">Russisch</h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Italienisch -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-pizza-slice fa-spin fa-3x text-success"></i>
+            <!-- Italienisch -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-pizza-slice fa-spin fa-3x text-success"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">Italienisch</h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">Italienisch</h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Griechisch -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-piggy-bank fa-3x text-success"></i>
+            <!-- Griechisch -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-piggy-bank fa-3x text-success"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">Grichisch</h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">Grichisch</h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Sozialkunde -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-users fa-3x text-success"></i>
+            <!-- Sozialkunde -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-users fa-3x text-success"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">Sozialkunde</h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">Sozialkunde</h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Musik -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-music fa-3x text-success"></i>
+            <!-- Musik -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-music fa-3x text-success"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">Musik</h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">Musik</h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Evangelische Religion -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-bible fa-3x text-success"></i>
+            <!-- Evangelische Religion -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-bible fa-3x text-success"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">Evangelische Religion</h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">Evangelische Religion</h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Katholische Religion -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-bible fa-3x text-success"></i>
+            <!-- Katholische Religion -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-bible fa-3x text-success"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">Katholische Religion</h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">Katholische Religion</h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Psychologie -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-head-side-brain fa-3x text-success"></i>
+            <!-- Psychologie -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-head-side-brain fa-3x text-success"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">Psychologie</h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">Psychologie</h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Rechtskunde -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-gavel fa-3x text-success"></i>
+            <!-- Rechtskunde -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-gavel fa-3x text-success"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">Rechtskunde</h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">Rechtskunde</h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Technik -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-gears fa-3x text-success"></i>
+            <!-- Technik -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-gears fa-3x text-success"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">Technik</h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">Technik</h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Informatik -->
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-4 bg-success bg-opacity-10">
-                    <!-- center icon verticaly and horizontaly -->
-                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-display-code fa-3x text-success"></i>
+            <!-- Informatik -->
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-success bg-opacity-10">
+                        <!-- center icon verticaly and horizontaly -->
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-display-code fa-3x text-success"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-8">
-                    <div class="card-body my-3">
-                        <h5 class="card-title">
-                            Informatik
-                            <i class="fa-regular fa-heart ms-1 text-danger"></i>
-                        </h5>
-                        <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">
+                                Informatik
+                                <i class="fa-regular fa-heart ms-1 text-danger"></i>
+                            </h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> 4,67
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -2,6 +2,7 @@
 require 'vendor/autoload.php';
 require 'assets/config.php';
 require 'assets/functions/encrytion.function.php';
+require 'assets/functions/table-parser.function.php';
 
 // Create Router instance (bramus router)
 $router = new \Bramus\Router\Router();
@@ -89,21 +90,13 @@ $router->get('/marks', function () {
             header("Location: " . $_CONFIG['base_url'] . "/register?error=" . $errormsg);
             exit;
         }
-
-        echo "<a href='" . $_CONFIG['base_url'] . "/logout' style='font-size: 200%; color: red;'>Logout</a><br><br><br><br>";
-
-        echo $output;
-        exit;
     } else {
         header("Location: " . $_CONFIG['base_url'] . "/login");
         exit;
     }
-});
 
-$router->get('/design/marks', function () {
-    global $_CONFIG;
-    include 'views/marks.view.php';
-    exit;
+    require 'views/marks.view.php';
+
 });
 
 
