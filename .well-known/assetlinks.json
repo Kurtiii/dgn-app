@@ -1,0 +1,6 @@
+[{
+        "relation": ["delegate_permission/common.handle_all_urls"],
+        "target" : { "namespace": "android_app", "package_name": "de.kurtiii.dgn_app",
+                     "sha256_cert_fingerprints": ["97:D5:E3:9F:35:A8:BF:60:F7:C9:12:8B:CD:9C:D1:5F:02:95:32:84:BF:F8:C6:76:38:81:3C:E6:62:CB:9C:11"] }
+      }
+]
