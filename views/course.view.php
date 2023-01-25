@@ -12,6 +12,7 @@
     <script src="<?= $_CONFIG['base_url']; ?>/assets/lib/jquery/jquery.min.js"></script>
     <script src="<?= $_CONFIG['base_url']; ?>/assets/lib/fontawesome/fontawesome.min.js"></script>
     <script src="<?= $_CONFIG['base_url']; ?>/assets/code/js/darkmode.js" defer></script>
+    <link rel="manifest" href="<?= $_CONFIG['base_url']; ?>/manifest.json">
 </head>
 
 <body>
@@ -220,7 +221,11 @@
         </div>
 
 
-
+        <script>
+            if (typeof navigator.serviceWorker !== 'undefined') {
+                navigator.serviceWorker.register('<?= $_CONFIG['base_url']; ?>/assets/code/js/service-worker.js');
+            }
+        </script>
 </body>
 
 </html>

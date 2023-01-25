@@ -1,0 +1,15 @@
+{
+    "short_name": "DGN Noten",
+    "name": "DGN Noten App",
+    "icons": [
+        {
+            "src": "/assets/img/icon.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": "/web",
+    "display": "standalone",
+    "scope": "/",
+    "description": "Inoffizielle App für die Noten auf dem Domgymnasium Naumburg"
+}
