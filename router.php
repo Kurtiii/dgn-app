@@ -3,6 +3,7 @@ require 'vendor/autoload.php';
 require 'assets/config.php';
 require 'assets/functions/encrytion.function.php';
 require 'assets/functions/table-parser.function.php';
+require 'assets/functions/icons.function.php';
 
 // Create Router instance (bramus router)
 $router = new \Bramus\Router\Router();
@@ -63,7 +64,18 @@ $router->get('/logout', function () {
     exit;
 });
 
-// Define routes
+$router->get('/lock', function () {
+    global $_CONFIG;
+    global $_COOKIE;
+
+    // unset the sessionid cookie
+    setcookie("sessionid", "", time() - 3600, "/");
+
+    // redirect to the register page
+    header("Location: " . $_CONFIG['base_url'] . "/login");
+    exit;
+});
+
 $router->get('/register', function () {
     global $_CONFIG;
     require 'views/register.view.php';
@@ -95,11 +107,82 @@ $router->get('/marks', function () {
         exit;
     }
 
+    $courses = getAllCourses($output);
+
     require 'views/marks.view.php';
 
 });
 
+$router->get('/course/(\w+)', function ($course_name) {
+    global $_CONFIG;
+    global $_COOKIE;
+    $sessionid = $_COOKIE['sessionid'];
 
+    if (!empty($sessionid)) {
+        // send a curl get request to the marks page with the PHPSESSID cookie value and show the page content
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $_CONFIG['marks_url']);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_COOKIE, "PHPSESSID=" . $sessionid);
+        $output = curl_exec($ch);
+        curl_close($ch);
+
+        // check if the output contains "Sie sind nicht angemeldet!"
+        if (strpos($output, "Sie sind nicht angemeldet!") !== false) {
+            // redirect to the login page
+            $errormsg = urlencode("Deine Sitzung ist abgelaufen. Bitte melde dich erneut an.");
+            header("Location: " . $_CONFIG['base_url'] . "/register?error=" . $errormsg);
+            exit;
+        }
+    } else {
+        header("Location: " . $_CONFIG['base_url'] . "/login");
+        exit;
+    }
+
+    $course_name = urldecode($course_name);
+
+    require 'views/course.view.php';
+});
+
+$router->get('/about', function () {
+    global $_CONFIG;
+    global $_COOKIE;
+    $sessionid = $_COOKIE['sessionid'];
+
+    if (!empty($sessionid)) {
+        // send a curl get request to the marks page with the PHPSESSID cookie value and show the page content
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $_CONFIG['marks_url']);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_COOKIE, "PHPSESSID=" . $sessionid);
+        $output = curl_exec($ch);
+        curl_close($ch);
+
+        // check if the output contains "Sie sind nicht angemeldet!"
+        if (strpos($output, "Sie sind nicht angemeldet!") !== false) {
+            // redirect to the login page
+            $errormsg = urlencode("Deine Sitzung ist abgelaufen. Bitte melde dich erneut an.");
+            header("Location: " . $_CONFIG['base_url'] . "/register?error=" . $errormsg);
+            exit;
+        }
+    } else {
+        header("Location: " . $_CONFIG['base_url'] . "/login");
+        exit;
+    }
+
+    require 'views/about.view.php';
+});
+
+$router->get('/web', function () {
+    global $_CONFIG;
+    header("Location: " . $_CONFIG['base_url'] . "/login");
+    exit;
+});
+
+$router->get('/install', function () {
+    global $_CONFIG;
+    require 'views/install.view.php';
+});
 
 // API routes
 

@@ -101,9 +101,14 @@ function getCourseData($source, $course_name, $course_data)
             return null;
     }
 
-    $rows = $xpath->query("//table/tr[th[contains(text(), '$course_name')]]/td['$id']");
+    $rows = $xpath->query("//table/tr[th[contains(text(), '$course_name')]]/td[$id]");
     if ($rows->length > 0) {
         $data = trim($rows->item(0)->nodeValue);
     }
+
+    if (empty($data)){
+        return "unbekannt";
+    }
+
     return $data;
 }
