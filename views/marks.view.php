@@ -130,7 +130,13 @@
                                         <?= $course; ?>
                                     </h5>
                                     <div class="fs-3 fw-bold">
-                                        <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> <?= $courseAverage; ?>
+                                        <span class="badge bg-success bg-opacity-10 text-success">
+                                            Ø <?= $courseAverage; ?>
+                                        </span>
+                                        <i class="fa-regular fa-arrow-right mx-3"></i>
+                                        <span class="badge bg-success bg-opacity-10 text-success">
+                                            <?= round(getCourseData($output, $course, "end-year-arithmetical-mean")); ?>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -146,6 +152,7 @@
                     <tr>
                         <th scope="col">Fach</th>
                         <th scope="col">Durchschnitt</th>
+                        <th scope="col">Note</th>
                         <th scope="col">&nbsp;</th>
                     </tr>
                 </thead>
@@ -154,6 +161,7 @@
                         <tr>
                             <td><?= $course; ?></td>
                             <td>Ø <?= $courseAverage; ?></td>
+                            <td><?= round(getCourseData($output, $course, "end-year-arithmetical-mean")); ?></td>
                             <td>
                                 <a href="<?= $_CONFIG['base_url']; ?>/course/<?= urlencode($course); ?>" class="text-reset text-decoration-none">
                                     <i class="fa-regular fa-arrow-up-right-from-square"></i>
