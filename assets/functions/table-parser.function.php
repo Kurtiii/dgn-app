@@ -36,8 +36,13 @@ function getAllCourses($source)
                 $EDS = trim($tds->item($i)->nodeValue);
             }
         }
-        if ($course && $EDS)
+        if ($course && $EDS){
+            $course = str_replace('Ã¶', 'ö', $course);
+            $course = str_replace('Ã¼', 'ü', $course);
+            $course = str_replace('Ã¤', 'ä', $course);
             $courses[$course] = $EDS;
+        }
+            
     }
     return $courses;
 }
