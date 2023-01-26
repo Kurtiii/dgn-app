@@ -46,6 +46,10 @@
                     </h2>
                     <div id="collapseIOS" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionIOS">
                         <div class="accordion-body">
+                            <div class="alert alert-primary text-start mb-3" role="alert">
+                                Du musst diese Schritte in Safari durchführen.
+                                Andere Browser unterstützen diese Funktion nicht.
+                            </div>
                             Klicke auf <i class="fa-regular fa-arrow-up-from-square mx-2"></i> unten in der Mitte und wähle "Zum Startbildschirm hinzufügen" aus.
                             Folge danach den Anweisungen auf dem Bildschirm.
                         </div>
@@ -58,7 +62,7 @@
 
     <script>
         if (typeof navigator.serviceWorker !== 'undefined') {
-        navigator.serviceWorker.register('<?= $_CONFIG['base_url']; ?>/assets/code/js/service-worker.js');
+            navigator.serviceWorker.register('<?= $_CONFIG['base_url']; ?>/assets/code/js/service-worker.js');
         }
     </script>
 </body>
