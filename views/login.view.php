@@ -12,6 +12,7 @@
     <script src="assets/lib/jquery/jquery.min.js"></script>
     <script src="assets/lib/fontawesome/fontawesome.min.js"></script>
     <script src="assets/code/js/darkmode.js" defer></script>
+    <script src="assets/code/js/main.js" defer></script>
     <link rel="manifest" href="<?= $_CONFIG['base_url']; ?>/manifest.json">
 </head>
 
@@ -40,7 +41,7 @@
                             <input type="number" class="form-control" id="pin" name="pin" placeholder="4-stellige PIN" min="1000" max="9999" maxlength="4">
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary w-100">
+                            <button type="submit" class="btn btn-primary btn-loader w-100">
                                 Anmelden
                                 <i class="far fa-arrow-right ms-2"></i>
                             </button>

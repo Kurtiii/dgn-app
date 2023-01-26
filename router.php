@@ -113,7 +113,7 @@ $router->get('/marks', function () {
 
 });
 
-$router->get('/course/(\w+)', function ($course_name) {
+$router->get('/course/([^/]+)', function ($course_name) {
     global $_CONFIG;
     global $_COOKIE;
     $sessionid = $_COOKIE['sessionid'];
@@ -295,7 +295,7 @@ $router->post('/api/authentication/login', function () {
     curl_setopt($ch, CURLOPT_URL, $_CONFIG['login_url']);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, "username=" . $username . "&psw=" . $password);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, "username=" . $username . "&psw=" . $password . "&send=true");
     curl_setopt($ch, CURLOPT_HEADER, 1);
     $output = curl_exec($ch);
     curl_close($ch);

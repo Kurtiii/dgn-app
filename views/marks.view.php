@@ -12,6 +12,7 @@
     <script src="<?= $_CONFIG['base_url']; ?>/assets/lib/jquery/jquery.min.js"></script>
     <script src="<?= $_CONFIG['base_url']; ?>/assets/lib/fontawesome/fontawesome.min.js"></script>
     <script src="<?= $_CONFIG['base_url']; ?>/assets/code/js/darkmode.js" defer></script>
+    <script src="assets/code/js/main.js" defer></script>
     <link rel="manifest" href="<?= $_CONFIG['base_url']; ?>/manifest.json">
 </head>
 
@@ -39,6 +40,12 @@
                         <a class="nav-link" href="<?= $_CONFIG['base_url']; ?>/about">
                             <i class="fa-regular fa-circle-info me-1"></i>
                             Infos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link dark-mode-toggle" href="#" onclick="toggleDarkMode();">
+                            <i class="fa-regular fa-circle-info me-1"></i>
+                            Toggle
                         </a>
                     </li>
                     <li class="nav-item d-lg-none">
@@ -145,9 +152,15 @@
                 </a>
             <?php endforeach; ?>
 
+            <span class="form-text">
+                <i class="fa-regular fa-circle-info me-1"></i>
+                Die Endnoten werden maschinell berechnet und können daher von den tatsächlichen Noten abweichen.
+                Deine korrekte Endnote findest du in der Detailansicht des jeweiligen Faches.
+            </span>
+
             <hr class="my-5">
 
-            <table class="table" id="tableMarks">
+            <table class="table mb-5" id="tableMarks">
                 <thead>
                     <tr>
                         <th scope="col">Fach</th>

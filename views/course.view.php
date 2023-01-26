@@ -12,6 +12,7 @@
     <script src="<?= $_CONFIG['base_url']; ?>/assets/lib/jquery/jquery.min.js"></script>
     <script src="<?= $_CONFIG['base_url']; ?>/assets/lib/fontawesome/fontawesome.min.js"></script>
     <script src="<?= $_CONFIG['base_url']; ?>/assets/code/js/darkmode.js" defer></script>
+    <script src="<?= $_CONFIG['base_url']; ?>/assets/code/js/main.js" defer></script>
     <link rel="manifest" href="<?= $_CONFIG['base_url']; ?>/manifest.json">
 </head>
 
@@ -39,6 +40,12 @@
                         <a class="nav-link" href="<?= $_CONFIG['base_url']; ?>/about">
                             <i class="fa-regular fa-circle-info me-1"></i>
                             Infos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link dark-mode-toggle" href="#" onclick="toggleDarkMode();">
+                            <i class="fa-regular fa-circle-info me-1"></i>
+                            Toggle
                         </a>
                     </li>
                     <li class="nav-item d-lg-none">
@@ -85,7 +92,7 @@
 
     <div class="container mt-5" style="max-width: 29em;">
 
-        <a href="<?= $_CONFIG['base_url']; ?>/marks" class="btn btn-sm btn-outline-secondary w-100 mb-3">
+        <a href="<?= $_CONFIG['base_url']; ?>/marks" class="btn btn-sm btn-outline-secondary w-100 btn-loader mb-3">
             <i class="fa-regular fa-arrow-left me-1"></i>
             Zurück
         </a>
@@ -195,7 +202,7 @@
             </div>
         </div>
 
-        <div class="card mt-5">
+        <div class="card my-5">
             <div class="row g-0">
                 <div class="col-4 bg-primary bg-opacity-10">
                     <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
@@ -219,7 +226,6 @@
                 </div>
             </div>
         </div>
-
 
         <script>
             if (typeof navigator.serviceWorker !== 'undefined') {
