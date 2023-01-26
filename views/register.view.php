@@ -47,7 +47,7 @@
                         </div>
                         <div class="mb-4">
                             <label for="pin" class="form-label">Beliebige 4-stellige PIN</label>
-                            <input type="number" class="form-control" id="pin" name="pin" placeholder="Beliebige 4-stellige PIN" min="1000" max="9999" maxlength="4">
+                            <input type="number" class="form-control" id="pin" name="pin" placeholder="Beliebige 4-stellige PIN" min="0" max="9999" maxlength="4">
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary btn-loader w-100">

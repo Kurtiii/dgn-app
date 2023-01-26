@@ -204,6 +204,14 @@ $router->post('/api/authentication/register', function () {
     $password = $_POST['password'];
     $pin = $_POST['pin'];
 
+    // check if the pin is 4 characters long
+    if (strlen($pin) != 4) {
+        http_response_code(400);
+        $errormsg = urlencode("Der PIN muss 4 Zeichen lang sein.");
+        header("Location: " . $_CONFIG['base_url'] . "/register?error=" . $errormsg);
+        exit();
+    }
+
     // send a curl request to the login page with the given credentials and get the PHPSESSID cookie value
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $_CONFIG['login_url']);

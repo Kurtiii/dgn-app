@@ -38,7 +38,7 @@
                     <form action="<?= $_CONFIG['base_url']; ?>/api/authentication/login" method="post" class="mt-5 text-start">
                         <div class="mb-4">
                             <label for="pin" class="form-label">4-stellige PIN</label>
-                            <input type="number" class="form-control" id="pin" name="pin" placeholder="4-stellige PIN" min="1000" max="9999" maxlength="4">
+                            <input type="number" class="form-control" id="pin" name="pin" placeholder="4-stellige PIN" min="0" max="9999" maxlength="4">
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary btn-loader w-100">
