@@ -134,7 +134,7 @@
                             <div class="col-8">
                                 <div class="card-body my-3">
                                     <h5 class="card-title">
-                                        <?= $course; ?>
+                                        <?= parseCourseName($course); ?>
                                     </h5>
                                     <div class="fs-3 fw-bold">
                                         <span class="badge bg-success bg-opacity-10 text-success">

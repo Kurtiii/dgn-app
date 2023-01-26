@@ -4,6 +4,7 @@ require 'assets/config.php';
 require 'assets/functions/encrytion.function.php';
 require 'assets/functions/table-parser.function.php';
 require 'assets/functions/icons.function.php';
+require 'assets/functions/name-parser.function.php';
 
 // Create Router instance (bramus router)
 $router = new \Bramus\Router\Router();
