@@ -101,7 +101,7 @@
             <div class="row g-0">
                 <div class="col-4 bg-success bg-opacity-10">
                     <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <?= getCourseIcon($course_name); ?>
+                        <?= getCourseIcon(parseCourseName($course_name)); ?>
                     </div>
                 </div>
                 <div class="col-8">
