@@ -172,7 +172,7 @@
                 <tbody>
                     <?php foreach ($courses as $course => $courseAverage) : ?>
                         <tr>
-                            <td><?= htmlspecialchars($course); ?></td>
+                            <td><?= parseCourseName($course); ?></td>
                             <td>Ø <?= $courseAverage; ?></td>
                             <td><?= round(getCourseData($output, $course, "end-year-arithmetical-mean")); ?></td>
                             <td>
