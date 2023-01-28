@@ -14,6 +14,7 @@
     <script src="<?= $_CONFIG['base_url']; ?>/assets/code/js/darkmode.js" defer></script>
     <script src="assets/code/js/main.js" defer></script>
     <link rel="manifest" href="<?= $_CONFIG['base_url']; ?>/manifest.json">
+    <link rel="icon" type="image/png" href="<?= $_CONFIG['base_url']; ?>/assets/img/favicon.png" />
 </head>
 
 <body>
@@ -121,7 +122,9 @@
 
             <?php
             $courses = getAllCourses($output);
+            $overallAverage = array();
             foreach ($courses as $course => $courseAverage) :
+                $overallAverage[] = $courseAverage;
             ?>
                 <a href="<?= $_CONFIG['base_url']; ?>/course/<?= urlencode($course); ?>" class="text-decoration-none text-reset">
                     <div class="card mb-5">
@@ -157,6 +160,39 @@
                 Die Endnoten werden maschinell berechnet und können daher von den tatsächlichen Noten abweichen.
                 Deine korrekte Endnote findest du in der Detailansicht des jeweiligen Faches.
             </span>
+
+            <hr class="my-5">
+
+            <?php
+            $overallAverage = array_sum($overallAverage) / count($overallAverage);
+            $overallAverage = round($overallAverage, 2);
+            ?>
+
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-4 bg-primary bg-opacity-10">
+                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fa-regular fa-empty-set fa-3x text-primary"></i>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="card-body my-3">
+                            <h5 class="card-title">
+                                Gesamtdurchschnitt
+                            </h5>
+                            <div class="fs-3 fw-bold">
+                                <span class="badge bg-primary bg-opacity-10 text-primary">
+                                    Ø <?= $overallAverage; ?>
+                                </span>
+                                <i class="fa-regular fa-arrow-right mx-3"></i>
+                                <span class="badge bg-primary bg-opacity-10 text-primary">
+                                    <?= round($overallAverage); ?>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <hr class="my-5">
 

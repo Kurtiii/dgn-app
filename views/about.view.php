@@ -12,8 +12,9 @@
     <script src="<?= $_CONFIG['base_url']; ?>/assets/lib/jquery/jquery.min.js"></script>
     <script src="<?= $_CONFIG['base_url']; ?>/assets/lib/fontawesome/fontawesome.min.js"></script>
     <script src="<?= $_CONFIG['base_url']; ?>/assets/code/js/darkmode.js" defer></script>
-    <script src="assets/code/js/main.js" defer></script>
+    <script src="<?= $_CONFIG['base_url']; ?>/assets/code/js/main.js" defer></script>
     <link rel="manifest" href="<?= $_CONFIG['base_url']; ?>/manifest.json">
+    <link rel="icon" type="image/png" href="<?= $_CONFIG['base_url']; ?>/assets/img/favicon.png" />
 </head>
 
 <body>
