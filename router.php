@@ -205,6 +205,17 @@ $router->post('/api/authentication/register', function () {
     $password = $_POST['password'];
     $pin = $_POST['pin'];
 
+    $blacklist = file_get_contents('assets/lists/blacklist.json');
+    $blacklist = json_decode($blacklist, true);
+
+    // check if the username is blacklisted
+    if (in_array(md5($username), $blacklist)) {
+        http_response_code(400);
+        $errormsg = urlencode("Huch, kein Bock.");
+        header("Location: " . $_CONFIG['base_url'] . "/register?error=" . $errormsg);
+        exit();
+    }
+
     // check if the pin is 4 characters long
     if (strlen($pin) != 4) {
         http_response_code(400);
