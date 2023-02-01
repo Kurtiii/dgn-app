@@ -240,7 +240,7 @@
             Weitere Funktionen
         </h6>
 
-        <div class="list-group">
+        <div class="list-group mb-5">
             <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#markSimulationModal">
                 <i class="fa-regular fa-chart-line me-2"></i>
                 Noten simulieren
