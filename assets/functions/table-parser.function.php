@@ -109,7 +109,7 @@ function getCourseData($source, $course_name, $course_data)
     }
 
     if (empty($data)){
-        return "unbekannt";
+        return "?";
     }
 
     return $data;

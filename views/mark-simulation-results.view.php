@@ -93,10 +93,18 @@
 
     <div class="container mt-5" style="max-width: 29em;">
 
-        <a href="<?= $_CONFIG['base_url']; ?>/marks" class="btn btn-sm btn-outline-secondary w-100 btn-loader mb-3">
+        <a href="<?= $_CONFIG['base_url']; ?>/course/<?= $course_name; ?>" class="btn btn-sm btn-outline-secondary w-100 btn-loader mb-3">
             <i class="fa-regular fa-arrow-left me-1"></i>
             Zurück
         </a>
+
+        <div class="alert alert-danger" role="alert">
+            <i class="fa-regular fa-triangle-exclamation me-2"></i>
+            Es handelt sich um simulierte Noten.
+            Die Noten sind nicht real und können nicht als Referenz für die eigene Leistung genutzt werden.
+            Die hier angezeigten Noten repräsentieren in keinster Weise der auf dem Zeugnis angezeigten Noten.<br>
+            <a href="<?= $_CONFIG['base_url']; ?>/course/<?= $course_name; ?>" class="alert-link">Live-Daten ansehen</a>
+        </div>
 
         <div class="card">
             <div class="row g-0">
@@ -111,7 +119,7 @@
                             <?= parseCourseName($course_name); ?>
                         </h5>
                         <div class="fs-3 fw-bold">
-                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> <?= getCourseData($output, $course_name, 'end-year-arithmetical-mean'); ?>
+                            <span class="form-text text-muted" style="font-size: 70%;"><i class="fa-regular fa-empty-set"></i></span> <?= $final_mark; ?>
                         </div>
                     </div>
                 </div>
@@ -120,39 +128,40 @@
 
         <hr class="my-5">
 
-        <?php if (getCourseData($output, $course_name, 'other-arithmetical-mean') != "?"): ?>
-            <div class="card">
-                <div class="row g-0">
-                    <div class="col-4 bg-primary bg-opacity-10">
-                        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                            <i class="fa-regular fa-memo fa-3x text-primary"></i>
-                        </div>
+        <div class="card">
+            <div class="row g-0">
+                <div class="col-4 bg-primary bg-opacity-10">
+                    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+                        <i class="fa-regular fa-memo fa-3x text-primary"></i>
                     </div>
-                    <div class="col-8">
-                        <div class="card-body my-3">
-                            <h5 class="card-title mb-0 pb-0">
-                                sonstige Noten
-                            </h5>
-                            <div class="form-text">
-                                ∅ <span class="fw-bold"><?= getCourseData($output, $course_name, 'other-arithmetical-mean'); ?></span> berechnet mit <?= getCourseData($output, $course_name, 'other-percent'); ?> % Gewichtung
-                            </div>
-                            <div class="fs-5 mt-2">
-                                <?php
-                                $other_marks = getCourseData($output, $course_name, 'other');
-                                $other_marks = explode(' ', $other_marks);
-                                foreach ($other_marks as $mark) :
-                                    if ($mark == '?') continue;
-                                ?>
-                                    <span class="badge bg-primary bg-opacity-10 text-primary me-1"><?= $mark; ?></span>
-                                <?php endforeach; ?>
-                            </div>
+                </div>
+                <div class="col-8">
+                    <div class="card-body my-3">
+                        <h5 class="card-title mb-0 pb-0">
+                            sonstige Noten
+                        </h5>
+                        <div class="form-text">
+                            Gewichtet mit <?= $percentage_other; ?> %
+                        </div>
+                        <div class="fs-5 mt-2">
+                            <?php
+                            $other_marks = getCourseData($output, $course_name, 'other');
+                            $other_marks = explode(' ', $other_marks);
+                            foreach ($other_marks as $mark) :
+                                if ($mark == "?") continue;
+                            ?>
+                                <span class="badge bg-primary bg-opacity-10 text-primary me-1"><?= $mark; ?></span>
+                            <?php endforeach; ?>
+                            <?php foreach ($s_marks_other as $mark) : ?>
+                                <span class="badge bg-danger bg-opacity-10 text-danger me-1"><?= $mark; ?></span>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
             </div>
-        <?php endif; ?>
+        </div>
 
-        <?php if (getCourseData($output, $course_name, 'class-test-arithmetical-mean') != "?"): ?>
+        <?php if ($percentage_class_test != 0) : ?>
             <div class="card mt-5">
                 <div class="row g-0">
                     <div class="col-4 bg-primary bg-opacity-10">
@@ -166,16 +175,19 @@
                                 Klassenarbeiten
                             </h5>
                             <div class="form-text">
-                                ∅ <span class="fw-bold"><?= getCourseData($output, $course_name, 'class-test-arithmetical-mean'); ?></span> berechnet mit <?= getCourseData($output, $course_name, 'class-test-percent'); ?> % Gewichtung
+                                Gewichtet mit <?= $percentage_class_test; ?> %
                             </div>
                             <div class="fs-5 mt-2">
                                 <?php
                                 $classtest_marks = getCourseData($output, $course_name, 'class-test');
                                 $classtest_marks = explode(' ', $classtest_marks);
                                 foreach ($classtest_marks as $mark) :
-                                    if ($mark == '?') continue;
+                                    if ($mark == "?") continue;
                                 ?>
                                     <span class="badge bg-primary bg-opacity-10 text-primary me-1"><?= $mark; ?></span>
+                                <?php endforeach; ?>
+                                <?php foreach ($s_marks_class_test as $mark) : ?>
+                                    <span class="badge bg-danger bg-opacity-10 text-danger me-1"><?= $mark; ?></span>
                                 <?php endforeach; ?>
                             </div>
                         </div>
@@ -188,46 +200,50 @@
             <div class="row g-0">
                 <div class="col-4 bg-primary bg-opacity-10">
                     <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-calendar fa-3x text-primary"></i>
+                        <i class="fa-regular fa-empty-set fa-3x text-primary"></i>
                     </div>
                 </div>
                 <div class="col-8">
                     <div class="card-body my-3">
                         <h5 class="card-title mb-0 pb-0">
-                            Halbjahr
+                            Durchschnitt
                         </h5>
                         <div class="form-text">
-                            Statistiken für das Halbjahr
+                            Errechnet anhand aller Noten
                         </div>
                         <div class="fs-5 mt-2">
-                            <span class="badge bg-primary bg-opacity-10 text-primary">∅ <?= getCourseData($output, $course_name, 'half-year-arithmetical-mean'); ?></span>
+                            <span class="badge bg-primary bg-opacity-10 text-primary">∅ <?= getCourseData($output, $course_name, 'end-year-arithmetical-mean'); ?></span>
                             <i class="fa-regular fa-arrow-right mx-3"></i>
-                            <span class="badge bg-primary bg-opacity-10 text-primary"><?= getCourseData($output, $course_name, 'half-year-mark'); ?></span>
+                            <span class="badge bg-danger bg-opacity-10 text-danger">∅ <?= $final_mark; ?></span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="card my-5">
+        <div class="card mt-5">
             <div class="row g-0">
                 <div class="col-4 bg-primary bg-opacity-10">
                     <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
-                        <i class="fa-regular fa-calendars fa-3x text-primary"></i>
+                        <i class="fa-regular fa-empty-set fa-3x text-primary"></i>
                     </div>
                 </div>
                 <div class="col-8">
                     <div class="card-body my-3">
                         <h5 class="card-title mb-0 pb-0">
-                            Endjahr
+                            Note
                         </h5>
                         <div class="form-text">
-                            Statistiken für das Endjahr
+                            Errechnet anhand des Durchschnitts
                         </div>
                         <div class="fs-5 mt-2">
-                            <span class="badge bg-primary bg-opacity-10 text-primary">∅ <?= getCourseData($output, $course_name, 'end-year-arithmetical-mean'); ?></span>
-                            <i class="fa-regular fa-arrow-right mx-3"></i>
-                            <span class="badge bg-primary bg-opacity-10 text-primary"><?= getCourseData($output, $course_name, 'end-year-mark'); ?></span>
+                            <?php if (round(getCourseData($output, $course_name, 'end-year-arithmetical-mean')) == round($final_mark)) : ?>
+                                Deine Endnote ändert sich nicht. Du hast eine <span class="badge bg-primary bg-opacity-10 text-primary"><?= round($final_mark); ?></span>.
+                            <?php else : ?>
+                                <span class="badge bg-primary bg-opacity-10 text-primary"><?= round(getCourseData($output, $course_name, 'end-year-arithmetical-mean')); ?></span>
+                                <i class="fa-regular fa-arrow-right mx-3"></i>
+                                <span class="badge bg-danger bg-opacity-10 text-danger"><?= round($final_mark); ?></span>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -302,9 +318,6 @@
                 </div>
             </div>
         </div>
-
-
-
 
         <script>
             if (typeof navigator.serviceWorker !== 'undefined') {
