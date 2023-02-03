@@ -11,7 +11,9 @@ $router = new \Bramus\Router\Router();
 
 // Define routes
 $router->get('/', function () {
-    // ! app installation here
+    global $_CONFIG;
+    header("Location: " . $_CONFIG['base_url'] . "/register");
+    exit;
 });
 
 $router->get('/login', function () {
@@ -224,8 +226,14 @@ $router->post('/course/([^/]+)/mark-simulation/results', function ($course_name)
     // merge the class test marks
     $marks_class_test = array_merge($marks_class_test, $s_marks_class_test);
 
+    // remove every "?" from the array $marks_class_test
+    $marks_class_test = array_filter($marks_class_test, function($value) { return $value !== '?'; });
+
     // merge the other marks
     $marks_other = array_merge($marks_other, $s_marks_other);
+
+    // remove every "?" from the array $marks_other
+    $marks_other = array_filter($marks_other, function($value) { return $value !== '?'; });
 
     // calculate the average of all marks and round it to 2 decimal places. Use the percentage to calculate the final mark.
     $average_class_test = round(array_sum($marks_class_test) / count($marks_class_test), 2);
