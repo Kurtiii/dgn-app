@@ -122,6 +122,14 @@
                 </span>
                 <span><i class="fa-regular fa-chevron-right"></i></span>
             </a>
+            <a href="#<?= uniqid(); ?>" class="list-group-item list-group-item-action justify-content-between d-flex justify-space-between py-3 btn-loader" id="group-blocks">
+                <span>
+                    <i class="fa-regular fa-object-union text-primary me-2"></i>
+                    Blöcke gruppieren
+                    <span class="badge bg-primary bg-opacity-10 text-primary ms-2">Beta</span>
+                </span>
+                <span id="group-blocks-status">An <i class="fa-regular fa-check text-success ms-2"></i></span>
+            </a>
             <?php if ($additional_info) : ?>
                 <a href="#" class="list-group-item list-group-item-action justify-content-between d-flex justify-space-between py-3" data-bs-toggle="modal" data-bs-target="#additionalInfoModal">
                     <span>
@@ -146,29 +154,35 @@
         if ($timetable) :
             foreach ($timetable as $item) :
 
-                if ($item['St'] == 1 || $item['St'] == 3 || $item['St'] == 5 || $item['St'] == 7 || $item['St'] == 9) {
-                    $block_start = true;
-                    $block_end = false;
-                    switch ($item['St']) {
-                        case 1:
-                            $block = '<b>1. Block</b> (1. und 2. Stunde)';
-                            break;
-                        case 3:
-                            $block = '<b>2. Block</b> (3. und 4. Stunde)';
-                            break;
-                        case 5:
-                            $block =  '<b>3. Block</b> (5. und 6. Stunde)';
-                            break;
-                        case 7:
-                            $block = '<b>4. Block</b> (7. und 8. Stunde)';
-                            break;
-                        case 9:
-                            $block = '<b>5. Block</b> (9. und 10. Stunde)';
-                            break;
+                if ($_COOKIE['group-blocks'] == 'true') {
+                    if ($item['St'] == 1 || $item['St'] == 3 || $item['St'] == 5 || $item['St'] == 7 || $item['St'] == 9) {
+                        $block_start = true;
+                        $block_end = false;
+                        switch ($item['St']) {
+                            case 1:
+                                $block = '<b>1. Block</b> (1. und 2. Stunde)';
+                                break;
+                            case 3:
+                                $block = '<b>2. Block</b> (3. und 4. Stunde)';
+                                break;
+                            case 5:
+                                $block =  '<b>3. Block</b> (5. und 6. Stunde)';
+                                break;
+                            case 7:
+                                $block = '<b>4. Block</b> (7. und 8. Stunde)';
+                                break;
+                            case 9:
+                                $block = '<b>5. Block</b> (9. und 10. Stunde)';
+                                break;
+                        }
+                    } else {
+                        $block_start = false;
+                        $block_end = true;
                     }
                 } else {
                     $block_start = false;
-                    $block_end = true;
+                    $block_end = false;
+                    $show_hours = true;
                 }
 
                 if (isset($item['Le']['@attributes']) || isset($item['Fa']['@attributes']) || isset($item['Ra']['@attributes'])) {
@@ -182,6 +196,13 @@
                         <div class="card-header">
                             <h5 class="card-title form-text text-muted mb-0">
                                 <?= $block; ?>
+                            </h5>
+                        </div>
+                    <?php endif; ?>
+                    <?php if (@$show_hours): ?>
+                        <div class="card-header">
+                            <h5 class="card-title form-text text-muted mb-0">
+                                <?= $item['St']; ?>. Stunde
                             </h5>
                         </div>
                     <?php endif; ?>
@@ -300,6 +321,53 @@
         if (typeof navigator.serviceWorker !== 'undefined') {
             navigator.serviceWorker.register('<?= $_CONFIG['base_url']; ?>/assets/code/js/service-worker.js');
         }
+
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        $(document).ready(function() {
+            // get "group-blocks" cookie
+            group_blocks = getCookie('group-blocks');
+
+            if (group_blocks == 'true') {
+                $('#group-blocks-status').html('An <i class="fa-regular fa-check text-success ms-2"></i>');
+            } else {
+                $('#group-blocks-status').html('Aus <i class="fa-regular fa-times text-danger ms-2"></i>');
+            }
+
+            // save "group-blocks" cookie
+            $('#group-blocks').click(function() {
+                group_blocks = getCookie('group-blocks');
+                if (group_blocks) {
+                    group_blocks = false;
+                } else {
+                    group_blocks = true;
+                }
+                setCookie('group-blocks', group_blocks, 365);
+
+                // reload page
+                location.reload();
+            });
+        });
     </script>
 </body>
 
