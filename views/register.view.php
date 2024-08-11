@@ -46,6 +46,15 @@
                             <label for="password" class="form-label">Passwort</label>
                             <input type="password" class="form-control" id="password" name="password" placeholder="Passwort">
                         </div>
+                        <div class="mb-3">
+                            <label for="school" class="form-label">Klasse</label>
+                            <select class="form-select" id="class" name="class">
+                                <option value="none">Klasse auswählen...</option>
+                                <?php foreach ($classes as $class) : ?>
+                                    <option value="<?= $class; ?>"><?= $class; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                         <div class="mb-4">
                             <label for="pin" class="form-label">Beliebige 4-stellige PIN</label>
                             <input type="number" class="form-control" id="pin" name="pin" placeholder="Beliebige 4-stellige PIN" min="0" max="9999" maxlength="4">
