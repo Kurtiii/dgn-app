@@ -6,6 +6,7 @@ require 'assets/functions/table-parser.function.php';
 require 'assets/functions/table-parser-os.function.php';
 require 'assets/functions/icons.function.php';
 require 'assets/functions/name-parser.function.php';
+require 'assets/functions/timetable.function.php';
 
 // Create Router instance (bramus router)
 $router = new \Bramus\Router\Router();
@@ -305,6 +306,115 @@ $router->post('/course/([^/]+)/mark-simulation/results', function ($course_name)
     $final_mark = number_format($final_mark, 2, '.', '');
 
     require 'views/mark-simulation-results.view.php';
+});
+
+$router->get('/timetable', function () {
+    global $_CONFIG;
+    global $_COOKIE;
+    $sessionid = $_COOKIE['sessionid'];
+
+    if (!empty($sessionid)) {
+        // check if class is over 10
+        $class = $_COOKIE['class'];
+        $class = preg_replace("/[^0-9]/", "", $class);
+        if ($class > 10) {
+            $url = $_CONFIG['marks_url_os'];
+        } else {
+            $url = $_CONFIG['marks_url'];
+        }
+        // send a curl get request to the marks page with the PHPSESSID cookie value and show the page content
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_COOKIE, "PHPSESSID=" . $sessionid);
+        $output = curl_exec($ch);
+        curl_close($ch);
+
+        // check if the output contains "Sie sind nicht angemeldet!"
+        if (strpos($output, "Sie sind nicht angemeldet!") !== false) {
+            // redirect to the login page
+            $errormsg = urlencode("Deine Sitzung ist abgelaufen. Bitte melde dich erneut an.");
+            header("Location: " . $_CONFIG['base_url'] . "/register?error=" . $errormsg);
+            exit;
+        }
+    } else {
+        header("Location: " . $_CONFIG['base_url'] . "/login");
+        exit;
+    }
+
+    // check if class is empty
+    if (!@$_COOKIE['class']) {
+        http_response_code(400);
+        $errormsg = urlencode("Du wurdest abgemeldet, da du keine Klasse ausgewählt hast.");
+        header("Location: " . $_CONFIG['base_url'] . "/register?error=" . $errormsg);
+        exit();
+    }
+
+    if (!@$_GET['date']) {
+        $date = date('Y-m-d');
+    } else {
+        $date = $_GET['date'];
+        if (!preg_match("/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/", $date)) {
+            $date = date('Y-m-d');
+        }
+    }
+
+    $courses = $_COOKIE['courses'];
+    $courses = json_decode($courses);
+    $timetable = getTableForDay($date, $_COOKIE['class'], $courses);
+
+    $additional_info = getAdditionalInfo($date);
+
+    //echo getAvailableCourses($_COOKIE['class']);
+
+    require 'views/timetable.view.php';
+});
+
+$router->get('/timetable/filter', function () {
+    global $_CONFIG;
+    global $_COOKIE;
+    $sessionid = $_COOKIE['sessionid'];
+
+    if (!empty($sessionid)) {
+        // check if class is over 10
+        $class = $_COOKIE['class'];
+        $class = preg_replace("/[^0-9]/", "", $class);
+        if ($class > 10) {
+            $url = $_CONFIG['marks_url_os'];
+        } else {
+            $url = $_CONFIG['marks_url'];
+        }
+        // send a curl get request to the marks page with the PHPSESSID cookie value and show the page content
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_COOKIE, "PHPSESSID=" . $sessionid);
+        $output = curl_exec($ch);
+        curl_close($ch);
+
+        // check if the output contains "Sie sind nicht angemeldet!"
+        if (strpos($output, "Sie sind nicht angemeldet!") !== false) {
+            // redirect to the login page
+            $errormsg = urlencode("Deine Sitzung ist abgelaufen. Bitte melde dich erneut an.");
+            header("Location: " . $_CONFIG['base_url'] . "/register?error=" . $errormsg);
+            exit;
+        }
+    } else {
+        header("Location: " . $_CONFIG['base_url'] . "/login");
+        exit;
+    }
+
+    // check if class is empty
+    if (!@$_COOKIE['class']) {
+        http_response_code(400);
+        $errormsg = urlencode("Du wurdest abgemeldet, da du keine Klasse ausgewählt hast.");
+        header("Location: " . $_CONFIG['base_url'] . "/register?error=" . $errormsg);
+        exit();
+    }
+
+    $courses = getAvailableCourses($_COOKIE['class']);
+
+    require 'views/timetable-filter.view.php';
 });
 
 $router->get('/about', function () {

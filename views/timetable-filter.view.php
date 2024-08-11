@@ -38,13 +38,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= $_CONFIG['base_url']; ?>/timetable">
+                        <a class="nav-link active" href="<?= $_CONFIG['base_url']; ?>/timetable">
                             <i class="fa-regular fa-calendar me-1"></i>
                             Vertretungsplan
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="<?= $_CONFIG['base_url']; ?>/about">
+                        <a class="nav-link" href="<?= $_CONFIG['base_url']; ?>/about">
                             <i class="fa-regular fa-circle-info me-1"></i>
                             Infos
                         </a>
@@ -97,91 +97,96 @@
         </div>
     </nav>
 
-    <div class="container mt-5" style="max-width: 70em;">
+    <div class="container mt-5" style="max-width: 29em;">
 
-        <h1>
-            Informationen über die App
-        </h1>
+        <a href="<?= $_CONFIG['base_url']; ?>/timetable" class="btn btn-sm btn-outline-secondary w-100 btn-loader mb-3">
+            <i class="fa-regular fa-arrow-left me-1"></i>
+            Zurück
+        </a>
 
-        <p>
-            Vorab: Die App ist noch in der Entwicklung und wird ständig verbessert.
-            Wenn ihr also Fehler findet, meldet diese bitte über <a href="https://github.com/Kurtiii/dgn-app/issues" target="_blank" class="text-reset">GitHub</a> oder <a href="https://instagram.com/kurtiii06" target="_blank" class="text-reset">Instagram</a> an mich.<br>
-        </p>
-
-        <hr class="my-5">
-
-        <h4>
-            Von wem ist die App?
-        </h4>
-        <p>
-            Diese App wird <i>nicht</i> vom Domgymnasium Naumburg betrieben.
-            Sie wird von mir, <a href="https://kurtiii.de" target="_blank" class="text-reset">Kurt</a>, entwickelt und betrieben.
-            Ich stehe in keinerlei Verbindung mit dem Domgymnasium Naumburg und bin auch nicht für die angezeigten Noten verantwortlich.
-            Außerdem hat diese App keinerlei komerzielle Absichten.
-            Ich entwickle diese App in meiner Freizeit und stelle sie allen Schülern des Domgymnasiums Naumburg zur Verfügung, weil ich finde, dass die <a href="https://schueler.domgymnasium-nmb.de/login.php" target="_blank" class="text-reset">Notenverwaltung des Domgymnasiums Naumburg</a> möglicherweise Übelkeit verursachen kann und einmal überarbeitet werden könnte.
-            Naja, wenn die Schule es selbst nicht macht, dann eben ich.
-            Die App ist Quelloffen und kann von theoretisch jedem auf seinem eigenen Server betrieben werden.
-        </p>
-
-        <hr class="my-5">
-
-        <h4>
-            Ist die Nutzung der App kostenlos?
-        </h4>
-        <p>
-            Definitiv <b>ja</b>!
-            Ich verfolge mit dieser App keinerlei kommerzielle Absichten und stelle sie allen Schülern des Domgymnasiums Naumburg kostenlos zur Verfügung.
-            Ich denke, dass es nicht gerecht wäre, wenn ich für die Nutzung der App Geld verlangen würde.
-            Ihr werdet auch keinerlei Werbung in der App sehen. I mean come on, wer will schon Werbung sehen? Absoluter Bullshit!
-            Außerdem ist die App komplett Open Source und kann von jedem auf seinem eigenen Server betrieben werden.
-        </p>
-
-        <hr class="my-5">
-
-        <h4>
-            Ist die App sicher?
-        </h4>
-        <p>
-            Ich gebe mein bestes, um die App so sicher wie möglich zu machen.
-            Beispielsweise werden alle eingebenen Anmeldedaten verschlüsselt an den Server übertragen.
-            Auf meinem Server werden die Anmeldedaten nicht gespeichert, sondern nur zur Anmeldung verwendet.
-            Ich speichere die Anmeldedaten lokal auf deinem Gerät mithilfe von Cookies.
-            Dabei wird deine Passwort verschlüsselt gespeichert und kann nur mithilfe der PIN entschlüsselt werden.
-            Um die Sicherheit deines Schul-Kontos zu erhöhen empfehle ich dir, ein starkes Passwort zu verwenden.
-        </p>
-
-        <hr class="my-5">
-
-        <h4>
-            Welche Klassen werden unterstützt?
-        </h4>
-        <p>
-            Derzeit wird von mir nur die 10. Klassenstufe offiziell unterstützt.
-            Einige Funktionen der App funktionieren jedoch auch in anderen Klassenstufen (Beispielsweise laden einige Icons nicht, wenn du nicht in der 10. Klassenstufe bist).
-            Gerne kannst du die App für deine Klassenstufe testen und ggf. deine Erfahrungen mit mir teilen oder deine Klassenstufe selbst implementieren und einen Pull Request auf <a href="https://github.com/Kurtiii/dgn-app/" target="_blank" class="text-reset">GitHub</a> erstellen.
-        </p>
-
-        <hr class="my-5">
-
-        <h4>
-            Wie funktioniert die App?
-        </h4>
-        <p>
-            Grob gesagt, loggt sich die App in deinem Namen auf der <a href="https://schueler.domgymnasium-nmb.de/login.php" target="_blank" class="text-reset">Notenverwaltung des Domgymnasiums Naumburg</a> ein und versucht automatisch die Noten aus der Tabelle zu extrahieren und dir anzuzeigen.
-            Für eine detailierte technische Erklärung kannst du dir gerne die <span class="font-monospace">readme.md</span> auf <a href="https://github.com/Kurtiii/dgn-app/" target="_blank" class="text-reset">GitHub</a> ansehen.
-        </p>
-
-        <hr class="my-5">
+        <div class="alert form-text alert-danger my-3" role="alert">
+            <i class="fa-regular fa-info-circle me-1"></i>
+            Der Schulserver liefert leider teilweise falsche Lehrer zu den Kursen. Probier einfach mal aus, welcher Kurs dein richtiger ist. Sorry :/
+        </div>
 
         <p>
-            &copy; 2023 <a href="https://kurtiii.de" target="_blank" class="text-reset">Kurt Krüger</a>
-            &bull;
-            Notendaten von <a href="https://schueler.domgymnasium-nmb.de/login.php" target="_blank" class="text-reset">schueler.domgymnasium-nmb.de</a>
-            &bull;
-            <a href="https://kurtiii.de" target="_blank" class="text-reset">Besuche meine Website</a>
+            Wähle deine Kurse aus, um deinen Stundenplan zu filtern. <br>
+            Wenn du deinen Kurs nicht findest, kann es sein, dass du die falsche Klasse ausgewählt hast.
+            <a href="<?= $_CONFIG['base_url']; ?>/logout" class="text-decoration-none">Melde dich erneut an</a>, um deine Klasse zu ändern.
         </p>
 
+        <form action="">
+            <?php foreach ($courses as $course) : ?>
+                <input type="checkbox" name="course" id="<?= $course['KKz']; ?>" value="<?= $course['KKz']; ?>" class="btn-check" autocomplete="off">
+                <label class="btn btn-outline-primary w-100 mb-3" for="<?= $course['KKz']; ?>">
+                    <b><?= strtoupper($course['KKz']); ?></b>
+                    <br>
+                    <?= $course['KLe']; ?>
+                </label>
+            <?php endforeach; ?>
+        </form>
+
+        <a href="<?= $_CONFIG['base_url']; ?>/timetable" class="btn btn-sm btn-outline-secondary w-100 btn-loader mt-3">
+            <i class="fa-regular fa-arrow-left me-1"></i>
+            Zurück
+        </a>
+
+
+
+        <div class="my-5"></div>
     </div>
+
+    <script>
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        function eraseCookie(name) {
+            document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        }
+
+        $(document).ready(function() {
+            // load "courses" cookie
+            courses = getCookie('courses');
+            if (courses) {
+                courses = JSON.parse(courses);
+                courses.forEach(function(course) {
+                    $('#' + course).prop('checked', true);
+                });
+            }
+
+            // save "courses" cookie
+            $('.btn-check').change(function() {
+                var courses = [];
+                $('.btn-check:checked').each(function() {
+                    courses.push($(this).val());
+                });
+                console.log(courses);
+                // generate json
+                courses = JSON.stringify(courses);
+
+                setCookie('courses', courses, 365);
+            });
+        });
+    </script>
+
 
     <script>
         if (typeof navigator.serviceWorker !== 'undefined') {
