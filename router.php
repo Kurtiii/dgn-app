@@ -132,6 +132,14 @@ $router->get('/marks', function () {
         exit;
     }
 
+    // check if class is empty
+    if (!@$_COOKIE['class']) {
+        http_response_code(400);
+        $errormsg = urlencode("Du wurdest abgemeldet, da du keine Klasse ausgewählt hast.");
+        header("Location: " . $_CONFIG['base_url'] . "/register?error=" . $errormsg);
+        exit();
+    }
+
     if ($class > 10) {
         if (!@$_GET['year']) {
             $year = 0;

@@ -37,6 +37,10 @@
                         </div>
                     <?php endif; ?>
 
+                    <p>
+                        Melde dich mit deinen Anmeldedaten an, welche du auch für die Schulwebsite benutzt.
+                    </p>
+
                     <form action="<?= $_CONFIG['base_url']; ?>/api/authentication/register" method="post" class="mt-5 text-start">
                         <div class="mb-3">
                             <label for="username" class="form-label">Benutzername</label>

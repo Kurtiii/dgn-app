@@ -42,7 +42,7 @@
                     <h2 class="accordion-header" id="headingTwo">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIOS" aria-expanded="false" aria-controls="collapseIOS">
                             <i class="fa-brands fa-apple me-2"></i>
-                            iOS
+                            iOS (iPhone / iPad)
                         </button>
                     </h2>
                     <div id="collapseIOS" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionIOS">
@@ -61,6 +61,7 @@
         </div>
     </div>
 
+    <script src="<?= $_CONFIG['base_url']; ?>/assets/lib/bootstrap/bootstrap.min.js"></script>
     <script>
         if (typeof navigator.serviceWorker !== 'undefined') {
             navigator.serviceWorker.register('<?= $_CONFIG['base_url']; ?>/assets/code/js/service-worker.js');
