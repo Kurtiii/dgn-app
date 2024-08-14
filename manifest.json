@@ -3,7 +3,7 @@
     "name": "DGN Noten App",
     "icons": [
         {
-            "src": "/assets/img/icon.png",
+            "src": "assets/img/icon.png",
             "type": "image/png",
             "sizes": "512x512"
         }
