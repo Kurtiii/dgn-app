@@ -31,19 +31,12 @@
             <i class="fa-brands fa-apple text-primary fa-2x"></i>
             <h1 class="h5 mb-4">iPhone &bull; iPad</h1>
 
-            <div id="pwa" style="display: none;">
-                <a href="#" id="btnInstall">
-                    <img src="<?= $_CONFIG['base_url']; ?>/assets/img/stores/pwa.png" alt="Install as PWA" height="40px">
-                </a>
-
+            <div class="alert alert-primary text-start mb-3" role="alert">
+                Du musst diese Schritte in <b>Safari</b> durchführen.
+                Andere Browser unterstützen diese Funktion möglicherweise nicht.
             </div>
-
-            <div id="pwa-error" class="text-danger">
-                <i class="fa-regular fa-triangle-exclamation me-2"></i>
-                <b>Du verwendest einen veralteten Browser.</b>
-                Um diese App auf deinem <b>iPhone</b> zu installieren, öffne diese Seite in <b>Safari</b> und versuche es erneut.
-                Du kannst diese App auch <a href="<?= $_CONFIG['base_url']; ?>/web" class="text-danger">hier</a> im Browser verwenden.
-            </div>
+            Klicke auf <i class="fa-regular fa-arrow-up-from-square mx-2"></i> unten in der Mitte und wähle "<b>Zum Startbildschirm hinzufügen</b>" aus.
+            Folge danach den Anweisungen auf dem Bildschirm.
 
             <hr class="my-5">
             <i class="fa-brands fa-windows text-primary fa-2x"></i>
@@ -57,6 +50,11 @@
             <i class="fa-regular fa-globe text-primary fa-2x"></i>
             <h1 class="h5 mb-4">Im Browser nutzen</h1>
 
+
+            <a href="#" id="btnInstall" style="display: none;">
+                <img src="<?= $_CONFIG['base_url']; ?>/assets/img/stores/pwa.png" alt="Install as PWA" height="40px">
+            </a>
+            <br><br>
             <a href="<?= $_CONFIG['base_url']; ?>">
                 <img src="<?= $_CONFIG['base_url']; ?>/assets/img/stores/webapp.png" alt="Open as Webapp" height="40px">
             </a>
@@ -74,8 +72,7 @@
         let deferredPrompt;
         window.addEventListener('beforeinstallprompt', (e) => {
             deferredPrompt = e;
-            document.getElementById('pwa').style.display = 'block';
-            document.getElementById('pwa-error').style.display = 'none';
+            document.getElementById('btnInstall').style.display = 'block';
         });
 
         const installApp = document.getElementById('btnInstall');
