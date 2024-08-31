@@ -17,6 +17,12 @@
     <link rel="icon" type="image/png" href="<?= $_CONFIG['base_url']; ?>/assets/img/favicon.png" />
 </head>
 
+<style>
+    .remove-course {
+        margin-left: 93%;
+    }
+</style>
+
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid px-5">
@@ -117,8 +123,8 @@
         <div class="list-group">
             <a href="<?= $_CONFIG['base_url']; ?>/timetable/filter" class="list-group-item list-group-item-action justify-content-between d-flex justify-space-between py-3">
                 <span>
-                    <i class="fa-regular fa-filter text-primary me-2"></i>
-                    Kurse filtern
+                    <i class="fa-regular fa-eye-slash text-primary me-2"></i>
+                    Ausgeblendete Kurse
                 </span>
                 <span><i class="fa-regular fa-chevron-right"></i></span>
             </a>
@@ -153,6 +159,11 @@
         <?php
         if ($timetable) :
             foreach ($timetable as $item) :
+
+                // check if block should be shown
+                if (in_array($item['Fa'], $hidden_courses)) {
+                    continue;
+                }
 
                 if ($_COOKIE['group-blocks'] == 'true') {
                     if ($item['St'] == 1 || $item['St'] == 3 || $item['St'] == 5 || $item['St'] == 7 || $item['St'] == 9) {
@@ -191,7 +202,7 @@
                     $color = 'bg-primary text-primary';
                 }
         ?>
-                <div class="card <?= $block_start ? 'rounded-bottom-0 mb-0 pb-0' : 'mb-4'; ?> <?= $block_end ? 'rounded-top-0 mt-0 pt-0' : ''; ?>">
+                <div class="card <?= $block_start ? 'rounded-bottom-0 mb-0 pb-0' : 'mb-4'; ?> <?= $block_end ? 'rounded-top-0 mt-0 pt-0' : ''; ?> course_<?= $item['Fa']; ?>">
                     <?php if ($block_start): ?>
                         <div class="card-header">
                             <h5 class="card-title form-text text-muted mb-0">
@@ -217,21 +228,27 @@
                         </div>
                         <div class="col-8">
                             <div class="card-body py-4">
-                                <h3 class="d-inline text-muted fw-bold">
-                                    <?php if (isset($item['Fa']['@attributes'])) : ?>
-                                        <?php if (is_array($item['Fa'])) : ?>
-                                            <span class="text-danger">
-                                                ohne Angabe
-                                            </span>
+                                <div class="float-start">
+                                    <h3 class="d-inline text-muted fw-bold">
+                                        <?php if (isset($item['Fa']['@attributes'])) : ?>
+                                            <?php if (is_array($item['Fa'])) : ?>
+                                                <span class="text-danger">
+                                                    ohne Angabe
+                                                </span>
+                                            <?php else : ?>
+                                                <span class="text-danger">
+                                                    <?= $item['Fa'] ?? 'ohne Angabe'; ?>
+                                                </span>
+                                            <?php endif; ?>
                                         <?php else : ?>
-                                            <span class="text-danger">
-                                                <?= strtoupper($item['Fa']) ?? 'ohne Angabe'; ?>
-                                            </span>
+                                            <?= $item['Fa'] ?? 'ohne Angabe'; ?>
                                         <?php endif; ?>
-                                    <?php else : ?>
-                                        <?= strtoupper($item['Fa']) ?? 'ohne Angabe'; ?>
-                                    <?php endif; ?>
-                                </h3>
+                                    </h3>
+                                </div>
+                                <div class="float-end">
+                                    <a href="#remove_course"><i class="fa-regular fa-eye-slash fs-4 text-primary" onclick="remove_course('<?= $item['Fa']; ?>');"></i></a>
+                                </div>
+                                <div class="clearfix"></div>
                                 <span class="form-text d-block">
                                     Lehrer: <b>
                                         <?php if (isset($item['Le']['@attributes'])) : ?>
@@ -368,6 +385,31 @@
                 location.reload();
             });
         });
+
+        // remove course
+        function remove_course(course) {
+            var courses = getCookie('hidden_courses');
+
+            // check if course is in cookie, skip if and add course to cookie if not
+            if (courses) {
+                courses = JSON.parse(courses);
+                if (!courses.includes(course)) {
+                    courses.push(course);
+                }
+            } else {
+                courses = [course];
+            }
+
+            // generate json
+            courses = JSON.stringify(courses);
+
+            setCookie('hidden_courses', courses, 365);
+
+            console.log(courses);
+
+            // remove all elements with class "course_" + course
+            $('.course_' + course).remove();
+        }
     </script>
 </body>
 

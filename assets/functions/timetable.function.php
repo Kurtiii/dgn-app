@@ -8,10 +8,19 @@ function getTableForDay($date, $class, $courses)
     $date = date('Ymd', strtotime($date));
 
     // get timetable
-    $timetable = file_get_contents($_CONFIG['timetable_url'] . '/PlanKl' . $date . '.xml');
+    $url = $_CONFIG['timetable_url'] . '/PlanKl' . $date . '.xml';
+    $curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+    curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.2; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0');
+    curl_setopt($curl, CURLOPT_REFERER, 'https://www.domgymnasium-nmb.de/');
+
+    $timetable = curl_exec($curl);
+    curl_close($curl);
 
     // check if 300 error
-    if (strpos($timetable, 'Multiple Choices') !== false) {
+    if (strpos($timetable, 'Multiple Choices') !== false OR strpos($timetable, 'Bad Request') !== false OR strpos($timetable, 'Moved Permanently') !== false) {
         return false;
     }
 
@@ -58,7 +67,17 @@ function getAvailableCourses($class)
     global $_CONFIG;
 
     // get courses
-    $xml = file_get_contents($_CONFIG['timetable_url'] . '/Klassen.xml');
+    $url = $_CONFIG['timetable_url'] . '/Klassen.xml';
+    $curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+    curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.2; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0');
+    curl_setopt($curl, CURLOPT_REFERER, 'https://www.domgymnasium-nmb.de/');
+
+    $xml = curl_exec($curl);
+    curl_close($curl);
+
     $courses = json_decode(json_encode(simplexml_load_string($xml)), true);
 
     // parse courses
@@ -109,10 +128,19 @@ function getAdditionalInfo($date)
     $date = date('Ymd', strtotime($date));
 
     // get timetable
-    $timetable = file_get_contents($_CONFIG['timetable_url'] . '/PlanKl' . $date . '.xml');
+    $url = $_CONFIG['timetable_url'] . '/PlanKl' . $date . '.xml';
+    $curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+    curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.2; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0');
+    curl_setopt($curl, CURLOPT_REFERER, 'https://www.domgymnasium-nmb.de/');
+
+    $timetable = curl_exec($curl);
+    curl_close($curl);
 
     // check if 300 error
-    if (strpos($timetable, 'Multiple Choices') !== false) {
+    if (strpos($timetable, 'Multiple Choices') !== false OR strpos($timetable, 'Bad Request') !== false OR strpos($timetable, 'Moved Permanently')) {
         return false;
     }
 

@@ -104,27 +104,32 @@
             Zurück
         </a>
 
-        <div class="alert form-text alert-danger my-3" role="alert">
-            <i class="fa-regular fa-info-circle me-1"></i>
-            Der Schulserver liefert leider teilweise falsche Lehrer zu den Kursen. Probier einfach mal aus, welcher Kurs dein richtiger ist. Sorry :/
-        </div>
-
         <p>
-            Wähle deine Kurse aus, um deinen Stundenplan zu filtern. <br>
+            Hier findest du alle Kurse, welche du aus der Übersicht ausgeblendet hast. Tippe einen Kurs an, um ihn wieder anzuzeigen. <br>
             Wenn du deinen Kurs nicht findest, kann es sein, dass du die falsche Klasse ausgewählt hast.
             <a href="<?= $_CONFIG['base_url']; ?>/logout" class="text-decoration-none">Melde dich erneut an</a>, um deine Klasse zu ändern.
         </p>
 
-        <form action="">
-            <?php foreach ($courses as $course) : ?>
-                <input type="checkbox" name="course" id="<?= $course['KKz']; ?>" value="<?= $course['KKz']; ?>" class="btn-check" autocomplete="off">
-                <label class="btn btn-outline-primary w-100 mb-3" for="<?= $course['KKz']; ?>">
-                    <b><?= strtoupper($course['KKz']); ?></b>
-                    <br>
-                    <?= $course['KLe']; ?>
-                </label>
-            <?php endforeach; ?>
-        </form>
+        <?php foreach ($hidden_courses as $course) :
+            $lk = false;
+            $chr = mb_substr($course, 0, 1, "UTF-8");
+            if (mb_strtolower($chr, "UTF-8") != $chr) {
+                $lk = true;
+            }
+        ?>
+            <button type="button" class="btn btn-outline-primary w-100 mt-3" id="<?= $course; ?>">
+                <b><?= $course; ?></b>
+                <?php if ($lk) : ?>
+                    <span class="badge bg-primary bg-opacity-10 text-primary ms-2">LK</span>
+                <?php endif; ?>
+            </button>
+        <?php endforeach; ?>
+        <?php if (empty($hidden_courses)) : ?>
+            <div class="alert alert-success mt-3" role="alert">
+                <i class="fa-regular fa-circle-check me-2"></i>
+                Alle Kurse sind sichtbar.
+            </div>
+        <?php endif; ?>
 
         <a href="<?= $_CONFIG['base_url']; ?>/timetable" class="btn btn-sm btn-outline-secondary w-100 btn-loader mt-3">
             <i class="fa-regular fa-arrow-left me-1"></i>
@@ -163,26 +168,23 @@
         }
 
         $(document).ready(function() {
-            // load "courses" cookie
-            courses = getCookie('courses');
-            if (courses) {
-                courses = JSON.parse(courses);
-                courses.forEach(function(course) {
-                    $('#' + course).prop('checked', true);
-                });
-            }
+            hidden_courses = getCookie('hidden_courses');
 
             // save "courses" cookie
-            $('.btn-check').change(function() {
-                var courses = [];
-                $('.btn-check:checked').each(function() {
-                    courses.push($(this).val());
-                });
-                console.log(courses);
-                // generate json
-                courses = JSON.stringify(courses);
+            $('.btn-outline-primary').click(function() {
+                console.log(hidden_courses);
+                // remove course from hidden courses (json)
+                hidden_courses = JSON.parse(hidden_courses);
+                hidden_courses = hidden_courses.filter(function(course) {
+                    return course !== $(this).attr('id');
+                }.bind(this));
+                hidden_courses = JSON.stringify(hidden_courses);
 
-                setCookie('courses', courses, 365);
+                // save hidden courses
+                setCookie('hidden_courses', hidden_courses, 365);
+
+                // hide button
+                $(this).hide();
             });
         });
     </script>

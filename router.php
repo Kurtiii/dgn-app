@@ -84,8 +84,18 @@ $router->get('/lock', function () {
 $router->get('/register', function () {
     global $_CONFIG;
 
-    // get all classes
-    $xml = file_get_contents('https://www.domgymnasium-nmb.de/plan/mobdaten/Klassen.xml');
+    $url = "https://www.domgymnasium-nmb.de/plan/mobdaten/Klassen.xml";
+
+    $curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+    curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.2; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0');
+    curl_setopt($curl, CURLOPT_REFERER, 'https://www.domgymnasium-nmb.de/');
+
+    $xml = curl_exec($curl);
+    curl_close($curl);
+
     $xml = simplexml_load_string($xml);
     $json = json_encode($xml);
     $classes = json_decode($json, TRUE);
@@ -359,13 +369,17 @@ $router->get('/timetable', function () {
         }
     }
 
-    $courses = $_COOKIE['courses'];
-    $courses = json_decode($courses);
+    $courses = @$_COOKIE['courses'];
+    $courses = @json_decode($courses);
     $timetable = getTableForDay($date, $_COOKIE['class'], $courses);
 
     $additional_info = getAdditionalInfo($date);
 
-    //echo getAvailableCourses($_COOKIE['class']);
+    $hidden_courses = @$_COOKIE['hidden_courses'];
+    $hidden_courses = @json_decode($hidden_courses);
+    if (empty($hidden_courses)) {
+        $hidden_courses = [];
+    }
 
     require 'views/timetable.view.php';
 });
@@ -412,7 +426,13 @@ $router->get('/timetable/filter', function () {
         exit();
     }
 
-    $courses = getAvailableCourses($_COOKIE['class']);
+    $hidden_courses = @$_COOKIE['hidden_courses'];
+    $hidden_courses = @json_decode($hidden_courses);
+    if (empty($hidden_courses)) {
+        $hidden_courses = [];
+    }
+
+    var_dump($hidden_courses);
 
     require 'views/timetable-filter.view.php';
 });
@@ -479,7 +499,18 @@ $router->post('/api/authentication/register', function () {
     $class = $_POST['class'];
 
     // check if class is valid
-    $xml = file_get_contents('https://www.domgymnasium-nmb.de/plan/mobdaten/Klassen.xml');
+    $url = 'https://www.domgymnasium-nmb.de/plan/mobdaten/Klassen.xml';
+
+    $curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+    curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.2; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0');
+    curl_setopt($curl, CURLOPT_REFERER, 'https://www.domgymnasium-nmb.de/');
+
+    $xml = curl_exec($curl);
+    curl_close($curl);
+
     $xml = simplexml_load_string($xml);
     $json = json_encode($xml);
     $classes = json_decode($json, TRUE);

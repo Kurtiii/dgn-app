@@ -99,6 +99,15 @@
 
     <div class="container mt-5" style="max-width: 29em;">
 
+        <div class="alert alert-danger form-text mb-4 alert-dismissible fade show" role="alert">
+            <i class="fa-regular fa-exclamation-triangle me-2"></i>
+            <b>Derzeit können nur Archivdaten vergangener Schuljahre abgerufen werden.</b>
+            Die Schule stellt derzeit auf "FuxNoten" um, wodurch derzeit keine aktuellen Noten hier in der App abgerufen werden können.
+            Der Vertretungsplan ist davon nicht betroffen.
+            Ich beeile mich, eine Lösung zu finden.
+            Stay tuned! &lt;3
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
 
         <div class="card mb-5">
             <div class="card-body">
