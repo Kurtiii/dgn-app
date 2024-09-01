@@ -111,17 +111,27 @@
         </p>
 
         <?php foreach ($hidden_courses as $course) :
+
+            // remove id
+            $raw = $course;
+            $course = substr($course, 19);
+
+            $course = explode(":", $course);
+
             $lk = false;
-            $chr = mb_substr($course, 0, 1, "UTF-8");
+            $chr = mb_substr($course[0], 0, 1, "UTF-8");
             if (mb_strtolower($chr, "UTF-8") != $chr) {
                 $lk = true;
             }
         ?>
-            <button type="button" class="btn btn-outline-primary w-100 mt-3" id="<?= $course; ?>">
-                <b><?= $course; ?></b>
+            <button type="button" class="btn btn-outline-primary w-100 mt-3" id="<?= $raw; ?>">
+                <b><?= $course[0]; ?></b>
+                <span class="badge bg-primary bg-opacity-10 text-primary ms-2"><?= $course[1]; ?></span>
                 <?php if ($lk) : ?>
                     <span class="badge bg-primary bg-opacity-10 text-primary ms-2">LK</span>
                 <?php endif; ?>
+                <br>
+                <small class="form-text text-primary">Tippe, um Kurs wieder anzuzeigen</small>
             </button>
         <?php endforeach; ?>
         <?php if (empty($hidden_courses)) : ?>

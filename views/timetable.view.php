@@ -154,17 +154,23 @@
                 <i class="fa-regular fa-exclamation-triangle me-2"></i>
                 Für diesen Tag liegen keine Stundenpläne vor.
             </div>
+
+            <a href="<?= $_CONFIG['base_url']; ?>/timetable" class="btn btn-sm btn-outline-secondary w-100 btn-loader">
+                <i class="fa-regular fa-arrow-left me-1"></i>
+                Zurück zum aktuellen Tag
+            </a>
         <?php endif; ?>
 
         <?php
         if ($timetable) :
             foreach ($timetable as $item) :
 
-                // check if block should be shown
-                if (in_array($item['Fa'], $hidden_courses)) {
+                // check if hidden
+                if (str_contains($hidden_courses, '///:ID:' . $item['Nr'] . ':END:///')) {
                     continue;
                 }
 
+                // check if block
                 if ($_COOKIE['group-blocks'] == 'true') {
                     if ($item['St'] == 1 || $item['St'] == 3 || $item['St'] == 5 || $item['St'] == 7 || $item['St'] == 9) {
                         $block_start = true;
@@ -202,7 +208,7 @@
                     $color = 'bg-primary text-primary';
                 }
         ?>
-                <div class="card <?= $block_start ? 'rounded-bottom-0 mb-0 pb-0' : 'mb-4'; ?> <?= $block_end ? 'rounded-top-0 mt-0 pt-0' : ''; ?> course_<?= $item['Fa']; ?>">
+                <div class="card <?= $block_start ? 'rounded-bottom-0 mb-0 pb-0' : 'mb-4'; ?> <?= $block_end ? 'rounded-top-0 mt-0 pt-0' : ''; ?> course_<?= $item['Nr']; ?>">
                     <?php if ($block_start): ?>
                         <div class="card-header">
                             <h5 class="card-title form-text text-muted mb-0">
@@ -246,7 +252,7 @@
                                     </h3>
                                 </div>
                                 <div class="float-end">
-                                    <a href="#remove_course"><i class="fa-regular fa-eye-slash fs-4 text-primary" onclick="remove_course('<?= $item['Fa']; ?>');"></i></a>
+                                    <a href="#remove_course"><i class="fa-regular fa-eye-slash fs-4 text-primary" onclick="remove_course('<?= $item['Fa']; ?>', '<?= $item['Le']; ?>', '<?= $item['Nr']; ?>');"></i></a>
                                 </div>
                                 <div class="clearfix"></div>
                                 <span class="form-text d-block">
@@ -298,6 +304,32 @@
             endforeach;
         endif;
         ?>
+
+        <hr class="my-4">
+
+        <h5 class="text-muted mb-3">
+            <i class="fa-regular fa-info-circle text-primary me-2"></i>
+            Zusätzliche Informationen
+        </h5>
+
+        <p>
+            <?php
+            if ($additional_info) :
+                foreach ($additional_info as $item) :
+                    if (empty($item) || is_array($item)) {
+                        echo "<br>";
+                        continue;
+                    }
+                    echo $item;
+                    echo "<br>";
+                endforeach;
+            else:
+            ?>
+                <span class="text-muted fw-bold">
+                    Keine zusätzlichen Informationen vorhanden.
+                </span>
+            <?php endif; ?>
+        </p>
 
         <div class="my-5"></div>
     </div>
@@ -387,17 +419,19 @@
         });
 
         // remove course
-        function remove_course(course) {
+        function remove_course(course, teacher, id) {
             var courses = getCookie('hidden_courses');
+
+            var data = '///:ID:' + id + ':END:///' + course + ':' + teacher;
 
             // check if course is in cookie, skip if and add course to cookie if not
             if (courses) {
                 courses = JSON.parse(courses);
-                if (!courses.includes(course)) {
-                    courses.push(course);
+                if (!courses.includes(data)) {
+                    courses.push(data);
                 }
             } else {
-                courses = [course];
+                courses = [data];
             }
 
             // generate json
@@ -408,7 +442,7 @@
             console.log(courses);
 
             // remove all elements with class "course_" + course
-            $('.course_' + course).remove();
+            $('.course_' + id).remove();
         }
     </script>
 </body>

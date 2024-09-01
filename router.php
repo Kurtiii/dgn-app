@@ -63,6 +63,9 @@ $router->get('/logout', function () {
     setcookie("username", "", time() - 3600, "/");
     setcookie("password", "", time() - 3600, "/");
     setcookie("pin", "", time() - 3600, "/");
+    setcookie("class", "", time() - 3600, "/");
+    setcookie("courses", "", time() - 3600, "/");
+    setcookie("hidden_courses", "", time() - 3600, "/");
 
     // redirect to the register page
     header("Location: " . $_CONFIG['base_url'] . "/register");
@@ -361,7 +364,11 @@ $router->get('/timetable', function () {
     }
 
     if (!@$_GET['date']) {
-        $date = date('Y-m-d');
+        if (date('N') >= 6) {
+            $date = date('Y-m-d', strtotime('next Monday'));
+        } else {
+            $date = date('Y-m-d');
+        }
     } else {
         $date = $_GET['date'];
         if (!preg_match("/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/", $date)) {
@@ -380,6 +387,7 @@ $router->get('/timetable', function () {
     if (empty($hidden_courses)) {
         $hidden_courses = [];
     }
+    $hidden_courses = implode("+", $hidden_courses);
 
     require 'views/timetable.view.php';
 });
@@ -431,8 +439,6 @@ $router->get('/timetable/filter', function () {
     if (empty($hidden_courses)) {
         $hidden_courses = [];
     }
-
-    var_dump($hidden_courses);
 
     require 'views/timetable-filter.view.php';
 });
